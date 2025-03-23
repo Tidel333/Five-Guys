@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Five Guys - Build Your Best</title>
+  <style>
+    @font-face {
+      font-family: 'Horizon';
+      src: url('https://fonts.cdnfonts.com/s/20510/Horizon.woff') format('woff');
+    }
+
+    /* Pre-Landing Page Styles */
+    #prelanding {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #ff0000; /* Red background */
+      color: white; /* White text */
+      font-family: 'Horizon', Arial, sans-serif;
+      text-align: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      animation: fadeOut 1s ease-in-out 3s forwards; /* Fade out after 3 seconds */
+    }
+
+    #prelanding h1 {
+      font-size: 4rem;
+      text-transform: uppercase;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden; /* Hide after fading out */
+      }
+    }
+
+    /* Member Page Styles */
+    #member-page {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: white; /* White background */
+      color: #ff0000; /* Red text */
+      font-family: 'Horizon', Arial, sans-serif;
+      text-align: center;
+    }
+
+    #member-page .container {
+      max-width: 400px;
+      text-align: center;
+      border: 5px solid #ff0000; /* Red border */
+      border-radius: 12px;
+      padding: 2rem;
+      background-color: white; /* White background */
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    #member-page h1 {
+      font-size: 3rem;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      color: #ff0000; /* Red text */
+      text-shadow: 2px 2px #cc0000;
+    }
+
+    #member-page p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #ff0000; /* Red text */
+    }
+
+    #member-page .checkered {
+      width: 100%;
+      height: 20px;
+      background-image: linear-gradient(45deg, #ff0000 25%, white 25%, white 50%, #ff0000 50%, #ff0000 75%, white 75%, white); /* Inverted checkered pattern */
+      background-size: 20px 20px;
+      margin-bottom: 2rem;
+    }
+
+    #member-page input {
+      padding: 0.8rem;
+      font-size: 1rem;
+      border: 2px solid #ff0000; /* Red border */
+      border-radius: 4px;
+      background-color: transparent;
+      color: #ff0000; /* Red text */
+      width: 100%;
+      max-width: 300px;
+      box-shadow: inset 0 0 5px rgba(255, 0, 0, 0.5); /* Red shadow */
+    }
+
+    #member-page input::placeholder {
+      color: rgba(255, 0, 0, 0.7); /* Red placeholder */
+    }
+
+    #member-page button {
+      background-color: #ff0000; /* Red background */
+      color: white; /* White text */
+      border: none;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    #member-page button:hover {
+      background-color: white; /* White background */
+      color: #ff0000; /* Red text */
+      border: 2px solid #ff0000; /* Red border */
+    }
+
+    #member-page footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: rgba(255, 0, 0, 0.8); /* Red text */
+    }
+
+    /* Main Landing Page Styles */
+    #main-landing {
+      display: none; /* Hidden by default */
+    }
+
+    body {
+      font-family: 'Horizon', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      color: #333;
+    }
+
+    header {
+      background-color: #ff0000;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      text-transform: uppercase;
+      border-bottom: 8px solid #fff;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 4rem;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-top: 0.5rem;
+    }
+
+    .checkered {
+      background-image: linear-gradient(45deg, #fff 25%, #ff0000 25%, #ff0000 50%, #fff 50%, #fff 75%, #ff0000 75%, #ff0000);
+      background-size: 20px 20px;
+      height: 20px;
+      margin: 0;
+    }
+
+    section {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 2.5rem;
+      color: #ff0000;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .build-options button {
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      padding: 1rem 3rem;
+      margin: 0.5rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 1.3rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .build-options button:hover {
+      background-color: #cc0000;
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .menu-item {
+      background-color: #fff;
+      border: 3px solid #ff0000;
+      border-radius: 12px;
+      margin: 1.5rem auto;
+      max-width: 600px;
+      padding: 1.5rem;
+      text-align: left;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu-item h3 {
+      color: #ff0000;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+      text-transform: uppercase;
+    }
+
+    .menu-item p {
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .menu-item ul {
+      margin: 0;
+      padding-left: 1.5rem;
+    }
+
+    .menu-item ul li {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .toppings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .toppings-grid div {
+      background-color: #fff;
+      border: 2px solid #ff0000;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .toppings-grid h3 {
+      color: #ff0000;
+      margin-bottom: 0.8rem;
+      font-size: 1.5rem;
+    }
+
+    footer {
+      background-color: #ff0000;
+      color: white;
+      text-align: center;
+      padding: 1.5rem 0;
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      position: relative;
+    }
+
+    footer .checkered {
+      margin-top: -20px;
+    }
+
+    /* User Welcome Section */
+    #user-welcome {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: white;
+      border: 2px solid #ff0000;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      display: none; /* Hidden by default */
+    }
+
+    #user-welcome p {
+      margin: 0;
+      font-size: 1rem;
+      color: #ff0000;
+    }
+
+    #user-welcome img {
+      margin-top: 0.5rem;
+      width: 100px;
+      height: 100px;
+    }
+
+    /* About Us Section */
+    #about-us {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    #about-us button {
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    #about-us button:hover {
+      background-color: white;
+      color: #ff0000;
+      border: 2px solid #ff0000;
+    }
+  </style>
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault(); // Prevent form submission
+      const emailOrPhone = document.getElementById('emailOrPhone').value;
+
+      // Basic validation (check if input is not empty)
+      if (emailOrPhone.trim() === "") {
+        alert("Please enter your email or phone number.");
+        return;
+      }
+
+      // Hide Member Page and show Pre-Landing Page
+      document.getElementById('member-page').style.display = 'none';
+      document.getElementById('prelanding').style.display = 'flex';
+
+      // After 3 seconds, hide Pre-Landing Page and show Main Landing Page
+      setTimeout(function() {
+        document.getElementById('prelanding').style.display = 'none';
+        document.getElementById('main-landing').style.display = 'block';
+        showUserWelcome(emailOrPhone); // Show user welcome section
+      }, 3000); // 3000 milliseconds = 3 seconds
+    }
+
+    function showUserWelcome(emailOrPhone) {
+      const userWelcome = document.getElementById('user-welcome');
+      userWelcome.style.display = 'block';
+
+      // Display user's email or phone number
+      userWelcome.innerHTML = `
+        <p>Welcome, ${emailOrPhone}</p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(emailOrPhone)}" alt="QR Code">
+      `;
+    }
+  </script>
+</head>
+<body>
+  <!-- Pre-Landing Page -->
+  <div id="prelanding">
+    <h1>Five Guys</h1>
+  </div>
+
+  <!-- Member Page -->
+  <div id="member-page">
+    <div class="container">
+      <div class="checkered"></div>
+      <h1>Welcome to Five Guys</h1>
+      <p>Enter your email or phone number to continue:</p>
+      <form onsubmit="handleSubmit(event)">
+        <input
+          type="text"
+          id="emailOrPhone"
+          placeholder="Email or Phone Number"
+          required
+        />
+        <button type="submit">Continue</button>
+      </form>
+      <footer>© 2023 Five Guys. All Rights Reserved.</footer>
+    </div>
+  </div>
+
+  <!-- Main Landing Page -->
+  <div id="main-landing" style="display: none;">
+    <!-- User Welcome Section -->
+    <div id="user-welcome"></div>
+
+    <header>
+      <h1>FIVE GUYS</h1>
+      <p>Bringing Personalization, Loyalty, and Community to the Five Guys Experience</p>
+    </header>
+    <div class="checkered"></div>
+
+    <!-- Build Your Best Section -->
+    <section id="build-your-best">
+      <h2>Build Your Best</h2>
+      <div class="build-options">
+        <a href="burger.html"><button>Burger</button></a>
+        <a href="sandwich.html"><button>Sandwich</button></a>
+        <a href="fries.html"><button>Fries</button></a>
+        <a href="milkshake.html"><button>Milkshake</button></a>
+      </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="This Week's Favorites">
+      <h2>Menu</h2>
+      <div class="menu-item">
+        <h3>Hungry Meal</h3>
+        <p><strong>Go Big or Go Home:</strong> Double patties, cheese, bacon, grilled onions, grilled mushrooms.</p>
+        <ul>
+          <li>Two beef patties</li>
+          <li>Two slices of American cheese</li>
+          <li>Crispy bacon</li>
+          <li>Grilled onions & mushrooms</li>
+          <li>Pickles, jalapeños, tomatoes, lettuce</li>
+        </ul>
+      </div>
+      <div class="menu-item">
+        <h3>Veggie Bite</h3>
+        <p><strong>Garden Delight:</strong> Single beef patty, tomatoes, lettuce, jalapeños, grilled mushrooms.</p>
+        <ul>
+          <li>Single beef patty</li>
+          <li>Grilled onions & mushrooms</li>
+          <li>Pickles, jalapeños, green peppers</li>
+          <li>Extra lettuce & tomatoes</li>
+        </ul>
+      </div>
+      <div class="menu-item">
+        <h3>Protein Stack</h3>
+        <p><strong>Fitness Enthusiasm:</strong> Double patty, lettuce, tomatoes, grilled onions, pickles.</p>
+        <ul>
+          <li>Two beef patties</li>
+          <li>Crispy bacon</li>
+          <li>Lettuce wrap (low-carb)</li>
+          <li>Grilled onions & mushrooms</li>
+          <li>Pickles, jalapeños</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Toppings Section -->
+    <section id="toppings">
+      <h2>Toppings</h2>
+      <div class="toppings-grid">
+        <div>
+          <h3>Fresh Vegetables</h3>
+          <ul>
+            <li>Lettuce</li>
+            <li>Tomatoes</li>
+            <li>Onions</li>
+            <li>Green Peppers</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Pickled/Grilled Vegetables</h3>
+          <ul>
+            <li>Pickles</li>
+            <li>Grilled Onions</li>
+            <li>Jalapeño Peppers</li>
+            <li>Grilled Mushrooms</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Sauces & Condiments</h3>
+          <ul>
+            <li>Mustard</li>
+            <li>Ketchup</li>
+            <li>Mayo</li>
+            <li>Hot Sauce</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about-us">
+      <h2>About Us</h2>
+      <button onclick="window.location.href='https://www.fiveguys.com/the-five-guys-story'">
+        Learn More About Five Guys
+      </button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="checkered"></div>
+      <p>Every bite is packed with flavor.</p>
+      <p>&copy; 2023 Five Guys. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>
